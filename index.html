@@ -1,0 +1,728 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>AgriSmart AI — AI-Based Smart Agriculture System</title>
+  <link rel="stylesheet" href="style.css" />
+  <!-- FontAwesome Icons -->
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css" />
+  <!-- Google Fonts -->
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700;800&family=Outfit:wght@400;500;600;700;800&display=swap" rel="stylesheet">
+</head>
+<body>
+
+  <!-- Toast Notification Container -->
+  <div id="toast-container" class="toast-container"></div>
+
+  <!-- Navigation Bar -->
+  <nav class="navbar" id="navbar">
+    <div class="nav-container">
+      <a href="#home" class="nav-logo">
+        <i class="fa-solid fa-leaf text-green"></i>
+        <span>AgriSmart<span class="logo-accent">AI</span></span>
+      </a>
+
+      <button class="nav-toggle" id="nav-toggle" aria-label="Toggle navigation">
+        <i class="fa-solid fa-bars"></i>
+      </button>
+
+      <ul class="nav-menu" id="nav-menu">
+        <li class="nav-item"><a href="#home" class="nav-link active">Home</a></li>
+        <li class="nav-item"><a href="#dashboard" class="nav-link">Dashboard</a></li>
+        <li class="nav-item"><a href="#data-collection" class="nav-link">Data Input</a></li>
+        <li class="nav-item"><a href="#ai-analysis" class="nav-link">AI Analysis</a></li>
+        <li class="nav-item"><a href="#disease-detection" class="nav-link">Disease AI</a></li>
+        <li class="nav-item"><a href="#irrigation" class="nav-link">Smart Irrigation</a></li>
+        <li class="nav-item"><a href="#weather" class="nav-link">Weather</a></li>
+        <li class="nav-item"><a href="#crop-recommendation" class="nav-link">Crops</a></li>
+        <li class="nav-item"><a href="#about" class="nav-link">About</a></li>
+      </ul>
+    </div>
+  </nav>
+
+  <!-- Hero Section -->
+  <section id="home" class="hero-section">
+    <div class="hero-overlay"></div>
+    <div class="container hero-container">
+      <div class="hero-content">
+        <div class="badge badge-hero"><i class="fa-solid fa-microchip"></i> Next-Gen AgTech Demo</div>
+        <h1 class="hero-title">AI-Powered <span class="highlight">Smart Agriculture</span></h1>
+        <p class="hero-subtitle">
+          Empowering farmers with real-time data, artificial intelligence, and automated precision analytics for higher yields and sustainable farming.
+        </p>
+        <div class="hero-cta">
+          <a href="#data-collection" class="btn btn-primary"><i class="fa-solid fa-sliders"></i> Enter Farm Data</a>
+          <a href="#dashboard" class="btn btn-outline"><i class="fa-solid fa-chart-line"></i> View Live Dashboard</a>
+        </div>
+      </div>
+      <div class="hero-visual">
+        <div class="visual-card-glass">
+          <div class="visual-header">
+            <i class="fa-solid fa-satellite-dish pulse-icon"></i>
+            <span>Live Field Telemetry</span>
+          </div>
+          <div class="visual-stats">
+            <div class="stat-item">
+              <i class="fa-solid fa-droplet text-blue"></i>
+              <div>
+                <span class="stat-val">42%</span>
+                <span class="stat-lbl">Soil Moisture</span>
+              </div>
+            </div>
+            <div class="stat-item">
+              <i class="fa-solid fa-temperature-three-quarters text-orange"></i>
+              <div>
+                <span class="stat-val">28.5°C</span>
+                <span class="stat-lbl">Air Temp</span>
+              </div>
+            </div>
+          </div>
+          <div class="visual-status">
+            <span class="status-indicator active"></span> Real-Time AI Monitoring Active
+          </div>
+        </div>
+      </div>
+    </div>
+
+    <!-- Impact Stats Bar -->
+    <div class="stats-bar-wrapper">
+      <div class="container">
+        <div class="stats-grid">
+          <div class="stat-box">
+            <div class="stat-icon"><i class="fa-solid fa-faucet-drip"></i></div>
+            <div class="stat-data">
+              <h3>30%</h3>
+              <p>Water Savings</p>
+            </div>
+          </div>
+          <div class="stat-box">
+            <div class="stat-icon"><i class="fa-solid fa-bullseye"></i></div>
+            <div class="stat-data">
+              <h3>95%</h3>
+              <p>Disease Accuracy</p>
+            </div>
+          </div>
+          <div class="stat-box">
+            <div class="stat-icon"><i class="fa-solid fa-wheat-awn"></i></div>
+            <div class="stat-data">
+              <h3>20%</h3>
+              <p>Better Crop Yield</p>
+            </div>
+          </div>
+          <div class="stat-box">
+            <div class="stat-icon"><i class="fa-solid fa-clock"></i></div>
+            <div class="stat-data">
+              <h3>24/7</h3>
+              <p>Smart Monitoring</p>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <main class="main-content">
+
+    <!-- 11. Farm Dashboard Overview -->
+    <section id="dashboard" class="section">
+      <div class="container">
+        <div class="section-header">
+          <span class="section-subtitle">Real-time Metrics</span>
+          <h2 class="section-title">Farm Dashboard</h2>
+          <p class="section-desc">Unified overview of field telemetry, active predictions, and automated actions.</p>
+        </div>
+
+        <div class="dashboard-grid">
+          <div class="dash-card">
+            <div class="dash-icon bg-blue-light text-blue"><i class="fa-solid fa-droplet"></i></div>
+            <div class="dash-info">
+              <h4>Soil Moisture</h4>
+              <div class="dash-value" id="dash-moisture">42%</div>
+              <div class="progress-bar-bg">
+                <div class="progress-bar-fill bg-blue" id="dash-moisture-bar" style="width: 42%;"></div>
+              </div>
+            </div>
+          </div>
+
+          <div class="dash-card">
+            <div class="dash-icon bg-green-light text-green"><i class="fa-solid fa-flask"></i></div>
+            <div class="dash-info">
+              <h4>Soil pH</h4>
+              <div class="dash-value" id="dash-ph">6.5 <span class="badge badge-sm badge-success">Optimal</span></div>
+              <div class="progress-bar-bg">
+                <div class="progress-bar-fill bg-green" id="dash-ph-bar" style="width: 65%;"></div>
+              </div>
+            </div>
+          </div>
+
+          <div class="dash-card">
+            <div class="dash-icon bg-orange-light text-orange"><i class="fa-solid fa-temperature-high"></i></div>
+            <div class="dash-info">
+              <h4>Temperature</h4>
+              <div class="dash-value" id="dash-temp">28.5 °C</div>
+              <p class="dash-subtext">Optimal range: 20°C - 32°C</p>
+            </div>
+          </div>
+
+          <div class="dash-card">
+            <div class="dash-icon bg-cyan-light text-cyan"><i class="fa-solid fa-cloud-sun-rain"></i></div>
+            <div class="dash-info">
+              <h4>Humidity</h4>
+              <div class="dash-value" id="dash-humidity">65%</div>
+              <p class="dash-subtext">Evapotranspiration rate: Medium</p>
+            </div>
+          </div>
+
+          <div class="dash-card">
+            <div class="dash-icon bg-purple-light text-purple"><i class="fa-solid fa-heart-pulse"></i></div>
+            <div class="dash-info">
+              <h4>Crop Health</h4>
+              <div class="dash-value text-green" id="dash-health">Good (88%)</div>
+              <p class="dash-subtext">Based on multispectral data</p>
+            </div>
+          </div>
+
+          <div class="dash-card">
+            <div class="dash-icon bg-teal-light text-teal"><i class="fa-solid fa-shower"></i></div>
+            <div class="dash-info">
+              <h4>Irrigation Status</h4>
+              <div class="dash-value" id="dash-irrigation-status">Standby</div>
+              <span class="badge badge-warning" id="dash-irrigation-badge">Not Required</span>
+            </div>
+          </div>
+
+          <div class="dash-card">
+            <div class="dash-icon bg-yellow-light text-yellow"><i class="fa-solid fa-sun"></i></div>
+            <div class="dash-info">
+              <h4>Weather Forecast</h4>
+              <div class="dash-value" id="dash-weather-text">Partly Cloudy</div>
+              <p class="dash-subtext">Rain probability: 15%</p>
+            </div>
+          </div>
+
+          <div class="dash-card">
+            <div class="dash-icon bg-emerald-light text-emerald"><i class="fa-solid fa-seedling"></i></div>
+            <div class="dash-info">
+              <h4>Top Recommended Crop</h4>
+              <div class="dash-value text-green" id="dash-crop-rec">Wheat</div>
+              <p class="dash-subtext" id="dash-crop-match">94% Environment Match</p>
+            </div>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <!-- 5. Data Collection Module -->
+    <section id="data-collection" class="section bg-light">
+      <div class="container">
+        <div class="section-header">
+          <span class="section-subtitle">Telemetry Input</span>
+          <h2 class="section-title">Farm Data Collection</h2>
+          <p class="section-desc">Input live or sample agricultural data to trigger the simulation algorithms.</p>
+        </div>
+
+        <div class="grid-2-col">
+          <div class="card form-card">
+            <div class="card-header">
+              <h3><i class="fa-solid fa-sliders text-green"></i> Field Sensor Parameters</h3>
+              <button type="button" class="btn btn-sm btn-outline" id="btn-load-sample"><i class="fa-solid fa-wand-magic-sparkles"></i> Load Sample Data</button>
+            </div>
+            <form id="farm-data-form">
+              <div class="form-grid">
+                <div class="form-group">
+                  <label for="soilMoisture">Soil Moisture (%)</label>
+                  <input type="number" id="soilMoisture" min="0" max="100" step="0.1" value="42" required />
+                </div>
+                <div class="form-group">
+                  <label for="soilTemp">Soil Temperature (°C)</label>
+                  <input type="number" id="soilTemp" min="-10" max="60" step="0.1" value="24.5" required />
+                </div>
+                <div class="form-group">
+                  <label for="soilPh">Soil pH (0 - 14)</label>
+                  <input type="number" id="soilPh" min="0" max="14" step="0.1" value="6.5" required />
+                </div>
+                <div class="form-group">
+                  <label for="humidity">Air Humidity (%)</label>
+                  <input type="number" id="humidity" min="0" max="100" step="0.1" value="65" required />
+                </div>
+                <div class="form-group">
+                  <label for="airTemp">Air Temperature (°C)</label>
+                  <input type="number" id="airTemp" min="-10" max="60" step="0.1" value="28.5" required />
+                </div>
+                <div class="form-group">
+                  <label for="rainfall">Expected Rainfall (mm)</label>
+                  <input type="number" id="rainfall" min="0" max="500" step="0.1" value="12" required />
+                </div>
+                <div class="form-group">
+                  <label for="nitrogen">Nitrogen - N (mg/kg)</label>
+                  <input type="number" id="nitrogen" min="0" max="300" value="90" required />
+                </div>
+                <div class="form-group">
+                  <label for="phosphorus">Phosphorus - P (mg/kg)</label>
+                  <input type="number" id="phosphorus" min="0" max="300" value="42" required />
+                </div>
+                <div class="form-group">
+                  <label for="potassium">Potassium - K (mg/kg)</label>
+                  <input type="number" id="potassium" min="0" max="300" value="43" required />
+                </div>
+                <div class="form-group">
+                  <label for="cropType">Current / Intended Crop</label>
+                  <select id="cropType">
+                    <option value="Wheat">Wheat</option>
+                    <option value="Rice">Rice</option>
+                    <option value="Maize">Maize</option>
+                    <option value="Tomato">Tomato</option>
+                    <option value="Potato">Potato</option>
+                    <option value="Cotton">Cotton</option>
+                    <option value="Soybean">Soybean</option>
+                    <option value="Sugarcane">Sugarcane</option>
+                  </select>
+                </div>
+                <div class="form-group full-width">
+                  <label for="farmArea">Farm Area (Acres)</label>
+                  <input type="number" id="farmArea" min="0.1" max="10000" step="0.1" value="5.5" required />
+                </div>
+              </div>
+
+              <div class="form-actions">
+                <button type="submit" class="btn btn-primary"><i class="fa-solid fa-floppy-disk"></i> Collect & Save Data</button>
+                <button type="reset" class="btn btn-secondary" id="btn-reset-form"><i class="fa-solid fa-rotate-left"></i> Reset</button>
+              </div>
+            </form>
+          </div>
+
+          <!-- Stored Data View -->
+          <div class="card data-summary-card">
+            <div class="card-header">
+              <h3><i class="fa-solid fa-database text-green"></i> Active Telemetry Record</h3>
+              <span class="badge badge-success" id="data-status-badge">Saved</span>
+            </div>
+            <div class="card-body">
+              <p class="text-muted">The parameters below represent the active memory buffer used by AI analysis modules.</p>
+              
+              <div class="data-display-grid" id="data-display-container">
+                <!-- Dynamically rendered via JS -->
+              </div>
+
+              <div class="timestamp-box">
+                <i class="fa-regular fa-clock"></i> Last Updated: <span id="last-update-time">Just now</span>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <!-- 6. AI Data Analysis -->
+    <section id="ai-analysis" class="section">
+      <div class="container">
+        <div class="section-header">
+          <span class="section-subtitle">Diagnostic Engine</span>
+          <h2 class="section-title">AI Soil & Health Diagnostics</h2>
+          <p class="section-desc">Simulated machine-learning model output evaluating nutrient balance and soil stress.</p>
+        </div>
+
+        <div class="analysis-action-bar">
+          <button id="btn-run-ai" class="btn btn-primary btn-lg pulse"><i class="fa-solid fa-brain"></i> Analyze with AI Model</button>
+          <div class="demo-tag"><i class="fa-solid fa-circle-info"></i> Simulation Prototype</div>
+        </div>
+
+        <div class="grid-3-col margin-top-lg" id="ai-results-grid">
+          <div class="card analysis-card">
+            <div class="analysis-header">
+              <i class="fa-solid fa-mountain-sun text-green"></i>
+              <h4>Soil Condition</h4>
+            </div>
+            <div class="metric-circle-wrapper">
+              <div class="metric-value-display" id="ai-soil-status">Optimal</div>
+            </div>
+            <p class="analysis-detail" id="ai-soil-detail">pH and temperature are well within optimal ranges for root absorption.</p>
+            <div class="progress-bar-bg">
+              <div class="progress-bar-fill bg-green" id="ai-soil-bar" style="width: 85%;"></div>
+            </div>
+          </div>
+
+          <div class="card analysis-card">
+            <div class="analysis-header">
+              <i class="fa-solid fa-droplet text-blue"></i>
+              <h4>Moisture Index</h4>
+            </div>
+            <div class="metric-circle-wrapper">
+              <div class="metric-value-display" id="ai-moisture-status">Adequate</div>
+            </div>
+            <p class="analysis-detail" id="ai-moisture-detail">Soil moisture level prevents wilting while avoiding root hypoxia.</p>
+            <div class="progress-bar-bg">
+              <div class="progress-bar-fill bg-blue" id="ai-moisture-bar" style="width: 70%;"></div>
+            </div>
+          </div>
+
+          <div class="card analysis-card">
+            <div class="analysis-header">
+              <i class="fa-solid fa-vial text-purple"></i>
+              <h4>Nutrient Balance (NPK)</h4>
+            </div>
+            <div class="metric-circle-wrapper">
+              <div class="metric-value-display" id="ai-npk-status">Balanced</div>
+            </div>
+            <p class="analysis-detail" id="ai-npk-detail">Nitrogen and Phosphorus levels support active vegetative growth.</p>
+            <div class="progress-bar-bg">
+              <div class="progress-bar-fill bg-purple" id="ai-npk-bar" style="width: 78%;"></div>
+            </div>
+          </div>
+        </div>
+
+        <!-- Comprehensive AI Diagnosis -->
+        <div class="card overall-health-card margin-top-md">
+          <div class="card-header">
+            <h3><i class="fa-solid fa-notes-medical text-green"></i> Overall Field Health Assessment</h3>
+            <span class="badge badge-success" id="overall-health-badge">Score: 88 / 100</span>
+          </div>
+          <div class="card-body">
+            <p id="overall-health-summary" class="lead-text">
+              The overall farm condition is highly favorable. Current environmental and soil parameters closely match target profiles.
+            </p>
+            <div class="recommended-action-box">
+              <i class="fa-solid fa-shield-halved text-green"></i>
+              <div>
+                <strong>Recommended Agronomic Action:</strong>
+                <span id="ai-recommended-action">Maintain regular monitoring. Apply scheduled N-K top dressing in 10 days.</span>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <!-- 7. Crop Disease Detection -->
+    <section id="disease-detection" class="section bg-light">
+      <div class="container">
+        <div class="section-header">
+          <span class="section-subtitle">Computer Vision Module</span>
+          <h2 class="section-title">AI Crop Disease Detection</h2>
+          <p class="section-desc">Upload a crop leaf image to simulate neural network image classification and pathology detection.</p>
+        </div>
+
+        <div class="demo-disclaimer">
+          <i class="fa-solid fa-circle-exclamation text-orange"></i>
+          <span><strong>Demo Mode:</strong> Disease detection is simulated. A production deployment would stream images to a convolutional neural network (CNN) model (e.g., ResNet / EfficientNet API).</span>
+        </div>
+
+        <div class="grid-2-col">
+          <div class="card upload-card">
+            <h3><i class="fa-solid fa-cloud-arrow-up text-green"></i> Upload Leaf Image</h3>
+            <p class="text-muted">Select an image file or pick one of our sample infected leaf presets below.</p>
+            
+            <div class="drop-zone" id="drop-zone">
+              <i class="fa-solid fa-image drop-zone-icon"></i>
+              <p>Drag & Drop leaf photo here or <strong>Browse</strong></p>
+              <input type="file" id="disease-image-input" accept="image/*" class="file-input-hidden" />
+            </div>
+
+            <div class="sample-images-bar">
+              <span>Quick Sample Testing:</span>
+              <div class="sample-btns">
+                <button type="button" class="btn-sample" data-sample="healthy"><i class="fa-solid fa-leaf text-green"></i> Healthy</button>
+                <button type="button" class="btn-sample" data-sample="blight"><i class="fa-solid fa-bug text-orange"></i> Blight</button>
+                <button type="button" class="btn-sample" data-sample="mildew"><i class="fa-solid fa-virus text-red"></i> Mildew</button>
+              </div>
+            </div>
+
+            <button id="btn-detect-disease" class="btn btn-primary full-width margin-top-md" disabled>
+              <i class="fa-solid fa-magnifying-glass-chart"></i> Run Disease Inference
+            </button>
+          </div>
+
+          <!-- Inference Output -->
+          <div class="card disease-result-card">
+            <h3><i class="fa-solid fa-microscope text-green"></i> AI Diagnostic Result</h3>
+            
+            <div class="preview-container">
+              <img id="disease-image-preview" src="" alt="Uploaded Leaf Preview" class="image-preview hidden" />
+              <div id="preview-placeholder" class="preview-placeholder">
+                <i class="fa-solid fa-camera"></i>
+                <p>Image preview will appear here</p>
+              </div>
+            </div>
+
+            <div id="disease-output-body" class="disease-output-body hidden">
+              <div class="disease-header">
+                <h4 id="disease-name">Tomato Early Blight</h4>
+                <span class="badge badge-danger" id="disease-severity">High Severity</span>
+              </div>
+
+              <div class="confidence-box">
+                <div class="confidence-label">
+                  <span>Confidence Score</span>
+                  <span id="disease-confidence">96.4%</span>
+                </div>
+                <div class="progress-bar-bg">
+                  <div class="progress-bar-fill bg-green" id="disease-confidence-bar" style="width: 96.4%;"></div>
+                </div>
+              </div>
+
+              <div class="treatment-box">
+                <h5><i class="fa-solid fa-kit-medical text-green"></i> Recommended Treatment Plan:</h5>
+                <p id="disease-treatment">Apply copper-based fungicide immediately. Prune affected lower leaves and prevent overhead sprinkler irrigation to reduce foliage humidity.</p>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <!-- 8. Smart Irrigation -->
+    <section id="irrigation" class="section">
+      <div class="container">
+        <div class="section-header">
+          <span class="section-subtitle">Precision Water Management</span>
+          <h2 class="section-title">Smart Irrigation System</h2>
+          <p class="section-desc">Algorithmic evaluation of soil moisture deficit and weather trends to optimize valve controls.</p>
+        </div>
+
+        <div class="grid-2-col">
+          <div class="card">
+            <h3><i class="fa-solid fa-sliders text-blue"></i> Irrigation Logic Rules</h3>
+            <p class="text-muted">The system evaluates threshold variables dynamically based on telemetry updates.</p>
+
+            <ul class="rule-list">
+              <li><i class="fa-solid fa-check text-green"></i> <strong>Moisture &lt; 30%:</strong> Triggers High Priority Valve Activation.</li>
+              <li><i class="fa-solid fa-check text-green"></i> <strong>Moisture 30% - 50%:</strong> Moderate irrigation based on temperature.</li>
+              <li><i class="fa-solid fa-check text-green"></i> <strong>Expected Rain &gt; 15mm:</strong> Automatically suppresses irrigation valves.</li>
+            </ul>
+
+            <button id="btn-check-irrigation" class="btn btn-primary margin-top-md">
+              <i class="fa-solid fa-calculator"></i> Evaluate Irrigation Logic
+            </button>
+          </div>
+
+          <!-- Irrigation Display Card -->
+          <div class="card irrigation-status-card text-center">
+            <h3>Status Output</h3>
+            
+            <div class="water-animation-wrapper margin-top-md">
+              <div class="water-ring" id="water-ring">
+                <i class="fa-solid fa-faucet-drip water-icon" id="water-icon"></i>
+              </div>
+            </div>
+
+            <h3 class="status-title margin-top-md" id="irrigation-result-title">System Ready</h3>
+            <p id="irrigation-result-desc" class="text-muted">Click evaluate to calculate current field water demand.</p>
+
+            <div class="irrigation-metrics-mini margin-top-md">
+              <div>
+                <small>Soil Moisture</small>
+                <strong id="irr-moisture-val">42%</strong>
+              </div>
+              <div>
+                <small>Rain Chance</small>
+                <strong id="irr-rain-val">15%</strong>
+              </div>
+              <div>
+                <small>Valve Target</small>
+                <strong id="irr-target-val">Zone A</strong>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <!-- 9. Weather Prediction -->
+    <section id="weather" class="section bg-light">
+      <div class="container">
+        <div class="section-header">
+          <span class="section-subtitle">Microclimate Analytics</span>
+          <h2 class="section-title">Weather Prediction Dashboard</h2>
+          <p class="section-desc">Simulated local weather forecast integrated with farm micro-sensors.</p>
+        </div>
+
+        <div class="weather-wrapper">
+          <div class="card weather-main-card">
+            <div class="weather-current-header">
+              <div>
+                <h3 id="weather-location">Farm Station (Zone Alpha)</h3>
+                <p id="weather-condition-text">Partly Cloudy</p>
+              </div>
+              <button id="btn-update-weather" class="btn btn-sm btn-outline"><i class="fa-solid fa-arrows-rotate"></i> Update Weather</button>
+            </div>
+
+            <div class="weather-current-body">
+              <div class="weather-temp-display">
+                <i class="fa-solid fa-cloud-sun text-yellow weather-main-icon" id="weather-main-icon"></i>
+                <span class="temp-number" id="weather-temp font-outfit">28.5</span>
+                <span class="temp-unit">°C</span>
+              </div>
+
+              <div class="weather-stats-grid">
+                <div class="w-stat">
+                  <i class="fa-solid fa-droplet text-blue"></i>
+                  <span>Humidity</span>
+                  <strong id="weather-humidity">65%</strong>
+                </div>
+                <div class="w-stat">
+                  <i class="fa-solid fa-cloud-rain text-cyan"></i>
+                  <span>Rain Chance</span>
+                  <strong id="weather-rain">15%</strong>
+                </div>
+                <div class="w-stat">
+                  <i class="fa-solid fa-wind text-green"></i>
+                  <span>Wind Speed</span>
+                  <strong id="weather-wind">12 km/h</strong>
+                </div>
+                <div class="w-stat">
+                  <i class="fa-solid fa-gauge text-purple"></i>
+                  <span>Barometer</span>
+                  <strong>1013 hPa</strong>
+                </div>
+              </div>
+            </div>
+          </div>
+
+          <!-- 5-Day Forecast -->
+          <div class="forecast-container margin-top-md">
+            <h4><i class="fa-solid fa-calendar-days text-green"></i> 5-Day Agricultural Forecast</h4>
+            <div class="forecast-grid" id="forecast-grid">
+              <!-- Rendered dynamically -->
+            </div>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <!-- 10. Crop Recommendation -->
+    <section id="crop-recommendation" class="section">
+      <div class="container">
+        <div class="section-header">
+          <span class="section-subtitle">Agronomic Matching</span>
+          <h2 class="section-title">AI Crop Recommendation</h2>
+          <p class="section-desc">Matches soil parameters and climate conditions with optimal crop types.</p>
+        </div>
+
+        <div class="crop-action-bar">
+          <button id="btn-recommend-crops" class="btn btn-primary"><i class="fa-solid fa-seedling"></i> Generate Crop Suitability Index</button>
+        </div>
+
+        <div class="grid-3-col margin-top-lg" id="crop-cards-container">
+          <!-- Dynamically populated via script.js -->
+        </div>
+      </div>
+    </section>
+
+    <!-- 12. AI Smart Insights -->
+    <section id="ai-insights" class="section bg-light">
+      <div class="container">
+        <div class="section-header">
+          <span class="section-subtitle">Executive Decision Support</span>
+          <h2 class="section-title">AI Smart Insights</h2>
+          <p class="section-desc">Real-time alerts and actionable recommendations generated from live data.</p>
+        </div>
+
+        <div class="insights-container" id="insights-container">
+          <!-- Dynamic insights inserted here -->
+        </div>
+      </div>
+    </section>
+
+    <!-- 13. About Section -->
+    <section id="about" class="section">
+      <div class="container">
+        <div class="grid-2-col align-center">
+          <div>
+            <span class="section-subtitle">System Vision</span>
+            <h2 class="section-title">About AgriSmart AI</h2>
+            <p class="lead-text">
+              AI-Based Smart Agriculture combines Artificial Intelligence, IoT sensor networks, micro-climate data analytics, and automated decision-making to help farmers optimize yield and conserve resources.
+            </p>
+            <p class="text-muted margin-top-sm">
+              Designed as a modern agronomic framework, this application bridges traditional farming techniques with cutting-edge data science, enabling early disease intervention and precise water conservation.
+            </p>
+
+            <div class="tech-stack-badges margin-top-md">
+              <span class="badge badge-tech"><i class="fa-solid fa-wifi"></i> IoT Sensors</span>
+              <span class="badge badge-tech"><i class="fa-solid fa-brain"></i> Machine Learning</span>
+              <span class="badge badge-tech"><i class="fa-solid fa-eye"></i> Computer Vision</span>
+              <span class="badge badge-tech"><i class="fa-solid fa-cloud-sun"></i> Weather APIs</span>
+              <span class="badge badge-tech"><i class="fa-solid fa-satellite"></i> Satellite Data</span>
+            </div>
+          </div>
+
+          <div class="card architecture-card">
+            <h3><i class="fa-solid fa-network-wired text-green"></i> System Architecture</h3>
+            <div class="arch-diagram">
+              <div class="arch-step">
+                <i class="fa-solid fa-microchip"></i>
+                <span>IoT Field Sensors</span>
+              </div>
+              <i class="fa-solid fa-arrow-right arch-arrow"></i>
+              <div class="arch-step">
+                <i class="fa-solid fa-server"></i>
+                <span>API Gateway</span>
+              </div>
+              <i class="fa-solid fa-arrow-right arch-arrow"></i>
+              <div class="arch-step highlight-step">
+                <i class="fa-solid fa-brain"></i>
+                <span>AI / ML Models</span>
+              </div>
+              <i class="fa-solid fa-arrow-right arch-arrow"></i>
+              <div class="arch-step">
+                <i class="fa-solid fa-desktop"></i>
+                <span>Farmer Dashboard</span>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+    </section>
+
+  </main>
+
+  <!-- 14. Footer -->
+  <footer class="footer">
+    <div class="container">
+      <div class="footer-grid">
+        <div class="footer-brand">
+          <a href="#home" class="footer-logo">
+            <i class="fa-solid fa-leaf text-green"></i>
+            <span>AgriSmart<span class="logo-accent">AI</span></span>
+          </a>
+          <p>Smart Technology for a Sustainable Agricultural Future.</p>
+        </div>
+
+        <div class="footer-links">
+          <h4>Navigation</h4>
+          <ul>
+            <li><a href="#home">Home</a></li>
+            <li><a href="#dashboard">Dashboard</a></li>
+            <li><a href="#data-collection">Data Input</a></li>
+            <li><a href="#ai-analysis">AI Analysis</a></li>
+          </ul>
+        </div>
+
+        <div class="footer-links">
+          <h4>Modules</h4>
+          <ul>
+            <li><a href="#disease-detection">Disease Detection</a></li>
+            <li><a href="#irrigation">Smart Irrigation</a></li>
+            <li><a href="#weather">Weather Forecast</a></li>
+            <li><a href="#crop-recommendation">Crop AI</a></li>
+          </ul>
+        </div>
+
+        <div class="footer-info">
+          <h4>Hackathon Prototype</h4>
+          <p>Designed for academic & demonstration purposes. Ready for backend API integration.</p>
+        </div>
+      </div>
+
+      <div class="footer-bottom">
+        <p>&copy; 2026 AgriSmart AI System. All Rights Reserved.</p>
+      </div>
+    </div>
+  </footer>
+
+  <script src="script.js"></script>
+</body>
+</html>
