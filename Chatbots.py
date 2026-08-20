@@ -10,6 +10,8 @@ While True:
  if user =="hello"or user=="hi":
   print("Bot:Hello!how can I help you?")
 
+ 
+
  elif"name"in user:
   print("Bot:I am a simple python chatbot.")
 
